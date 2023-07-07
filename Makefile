@@ -81,4 +81,4 @@ clean:
 .PHONY: test
 test:
 	@echo "No test"
-	tree
+	dpkg -l
