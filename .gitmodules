@@ -1,3 +1,3 @@
-[submodule "linenoise"]
-	path = linenoise
+[submodule "yhirose-linenoise"]
+	path = yhirose-linenoise
 	url = https://github.com/yhirose/linenoise.git

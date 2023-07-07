@@ -24,6 +24,8 @@ install-dependencies:
 
 lib:
 	mkdir -p lib
+
+init:
 	git submodule update --init linenoise
 
 .c.o:
@@ -33,8 +35,8 @@ c/com_github_jfgiraud_jlinenoise_Library.h: src/main/java/com/github/jfgiraud/jl
 	$(JAVAC) -h c -d target/classes/ $<
 	make c/com_github_jfgiraud_jlinenoise_Library.o
 
-lib/libjlinenoise.so: linenoise/linenoise.o linenoise/encodings/utf8.o c/com_github_jfgiraud_jlinenoise_Library.h | lib
-	$(CC) $(CFLAGS) -L $(LIB) -shared $(INCLUDES) c/com_github_jfgiraud_jlinenoise_Library.c linenoise/linenoise.o linenoise/encodings/utf8.o -o $@
+lib/libjlinenoise.so: yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o c/com_github_jfgiraud_jlinenoise_Library.h | lib
+	$(CC) $(CFLAGS) -L $(LIB) -shared $(INCLUDES) c/com_github_jfgiraud_jlinenoise_Library.c yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o -o $@
 
 target/classes/%.class: src/main/java/%.java | target/classes
 	$(JAVAC) -cp target/classes -d target/classes/ $<
@@ -75,7 +77,7 @@ run: lib/$(REPOSITORY_NAME).jar target/classes/com/github/jfgiraud/jlinenoise/Ex
 clean:
 	@echo "Clean files"
 	rm -f c/com_github_jfgiraud_jlinenoise_Library.h
-	rm -f lib/*.so linenoise/{,encodings/}*.o c/*.o
+	rm -f lib/*.so yhirose-linenoise/{,encodings/}*.o c/*.o
 	rm -f lib/libjlinenoise.so lib/jlinenoise.jar
 	rm -rf target lib
 
