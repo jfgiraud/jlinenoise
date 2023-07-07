@@ -2,14 +2,15 @@ package com.github.jfgiraud.jlinenoise;
 
 public class Example {
 
-    private native void print();
+    private static Library lib = new Library();
 
     public static void main(String[] args) {
-        new Example().print();
-    }
-
-    static {
-        System.loadLibrary("jlinenoise");
+        lib.init();
+        lib.print();
+        String line;
+        while ((line = lib.linenoise("rpn> ")) != null) {
+            System.out.println("read: " + line);
+        }
     }
 
 }
