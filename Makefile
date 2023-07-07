@@ -26,7 +26,7 @@ lib:
 	mkdir -p lib
 
 init:
-	git submodule update --init linenoise
+	git submodule update --init yhirose-linenoise
 
 .c.o:
 	$(CC) -fPIC -c $(CFLAGS) $(INCLUDES) $< -o $@
