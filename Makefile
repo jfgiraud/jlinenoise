@@ -20,10 +20,11 @@ usage:
 	EOF
 
 install-dependencies:
-	git submodule update --init linenoise
+	apt install openjdk-11-jdk-headless
 
 lib:
 	mkdir -p lib
+	git submodule update --init linenoise
 
 .c.o:
 	$(CC) -fPIC -c $(CFLAGS) $(INCLUDES) $< -o $@
