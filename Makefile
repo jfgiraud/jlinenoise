@@ -3,7 +3,7 @@ CC = gcc
 JAVAC = javac
 CFLAGS = -Wall -W -Os -g
 LIB = lib
-INCLUDES = -I/java/include -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux -Ilinenoise
+INCLUDES = -I/java/include -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux -Iyhirose-linenoise
 
 VERSION ?= $(shell cat doc/VERSION)
 FILE_VERSION ?= $(shell cat doc/VERSION)
