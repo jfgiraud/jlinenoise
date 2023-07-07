@@ -20,7 +20,7 @@ usage:
 	EOF
 
 install-dependencies:
-	@echo "No dependency"
+	git submodule update linenoise
 
 lib:
 	mkdir -p lib
