@@ -41,11 +41,11 @@ target/classes/%.class: src/main/java/%.java | target/classes
 target/classes:
 	mkdir -p target/classes
 
-lib/jlinenoise.jar: lib/libjlinenoise.so target/classes/com/github/jfgiraud/jlinenoise/Library.class
+lib/$(REPOSITORY_NAME).jar: lib/libjlinenoise.so target/classes/com/github/jfgiraud/jlinenoise/Library.class
 	cd lib
-	jar cvf jlinenoise.jar libjlinenoise.so
+	jar cvf $(REPOSITORY_NAME).jar libjlinenoise.so
 	cd ../target/classes
-	jar -uvf ../../lib/jlinenoise.jar com/github/jfgiraud/jlinenoise/Library.class
+	jar -uvf ../../lib/$(REPOSITORY_NAME).jar com/github/jfgiraud/jlinenoise/Library.class
 
 .PHONY: update-version
 update-version:
@@ -54,8 +54,8 @@ update-version:
 	@echo "Modify version in doc/VERSION"
 	@echo "$(VERSION)" > doc/VERSION
 
-.PHONY: jar
-jar: lib/jlinenoise.jar
+.PHONY: archive
+archive: lib/$(REPOSITORY_NAME).jar
 
 .PHONY: commit-release
 commit-release: update-version
@@ -66,7 +66,7 @@ commit-release: update-version
 	git tag "v$$VERSION" -m "Tag v$$VERSION"
 	git push --tags
 
-run: lib/jlinenoise.jar target/classes/com/github/jfgiraud/jlinenoise/Example.class
+run: lib/$(REPOSITORY_NAME).jar target/classes/com/github/jfgiraud/jlinenoise/Example.class
 	cd target/classes
 	java -Djava.library.path=../../lib com.github.jfgiraud.jlinenoise.Example
 
