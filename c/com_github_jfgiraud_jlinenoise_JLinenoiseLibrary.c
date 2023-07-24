@@ -1,15 +1,15 @@
 #include <jni.h>
 #include <stdio.h>
-#include "com_github_jfgiraud_jlinenoise_Library.h"
+#include "com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h"
 #include "linenoise.h"
 #include "encodings/utf8.h"
 
-JNIEXPORT void JNICALL   Java_com_github_jfgiraud_jlinenoise_Library_print(JNIEnv *env, jobject obj)  {
+JNIEXPORT void JNICALL   Java_com_github_jfgiraud_jlinenoise_JLinenoiseLibrary_print(JNIEnv *env, jobject obj)  {
      printf("salut jeff!\n");
      return;
 }
 
-JNIEXPORT jstring JNICALL Java_com_github_jfgiraud_jlinenoise_Library_linenoise
+JNIEXPORT jstring JNICALL Java_com_github_jfgiraud_jlinenoise_JLinenoiseLibrary_linenoise
   (JNIEnv *env, jobject obj, jstring prompt) {
    const char *cprompt = (*env)->GetStringUTFChars(env, prompt, NULL);
    char *cresult = linenoise(cprompt);
@@ -18,7 +18,7 @@ JNIEXPORT jstring JNICALL Java_com_github_jfgiraud_jlinenoise_Library_linenoise
    return result;
 }
 
-JNIEXPORT void JNICALL Java_com_github_jfgiraud_jlinenoise_Library_init
+JNIEXPORT void JNICALL Java_com_github_jfgiraud_jlinenoise_JLinenoiseLibrary_init
   (JNIEnv *env, jobject obj) {
    linenoiseSetEncodingFunctions(
           linenoiseUtf8PrevCharLen,

@@ -31,12 +31,12 @@ init:
 .c.o:
 	$(CC) -fPIC -c $(CFLAGS) $(INCLUDES) $< -o $@
 
-c/com_github_jfgiraud_jlinenoise_Library.h: src/main/java/com/github/jfgiraud/jlinenoise/Library.java
+c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h: src/main/java/com/github/jfgiraud/jlinenoise/JLinenoiseLibrary.java
 	$(JAVAC) -h c -d target/classes/ $<
-	make c/com_github_jfgiraud_jlinenoise_Library.o
+	make c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.o
 
-lib/libjlinenoise.so: yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o c/com_github_jfgiraud_jlinenoise_Library.h | lib
-	$(CC) $(CFLAGS) -L $(LIB) -shared $(INCLUDES) c/com_github_jfgiraud_jlinenoise_Library.c yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o -o $@
+lib/libjlinenoise.so: yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h | lib
+	$(CC) $(CFLAGS) -L $(LIB) -shared $(INCLUDES) c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.c yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o -o $@
 
 target/classes/%.class: src/main/java/%.java | target/classes
 	$(JAVAC) -cp target/classes -d target/classes/ $<
@@ -44,11 +44,11 @@ target/classes/%.class: src/main/java/%.java | target/classes
 target/classes:
 	mkdir -p target/classes
 
-lib/$(REPOSITORY_NAME).jar: lib/libjlinenoise.so target/classes/com/github/jfgiraud/jlinenoise/Library.class
+lib/$(REPOSITORY_NAME).jar: lib/libjlinenoise.so target/classes/com/github/jfgiraud/jlinenoise/JLinenoiseLibrary.class
 	cd lib
 	jar cvf $(REPOSITORY_NAME).jar libjlinenoise.so
 	cd ../target/classes
-	jar -uvf ../../lib/$(REPOSITORY_NAME).jar com/github/jfgiraud/jlinenoise/Library.class
+	jar -uvf ../../lib/$(REPOSITORY_NAME).jar com/github/jfgiraud/jlinenoise/JLinenoiseLibrary.class
 
 .PHONY: update-version
 update-version:
@@ -69,14 +69,16 @@ commit-release: update-version
 	git tag "v$$VERSION" -m "Tag v$$VERSION"
 	git push --tags
 
+.PHONY: archive
+archive: lib/$(REPOSITORY_NAME).jar
+
 run: lib/$(REPOSITORY_NAME).jar target/classes/com/github/jfgiraud/jlinenoise/Example.class
-	cd target/classes
-	java -Djava.library.path=../../lib com.github.jfgiraud.jlinenoise.Example
+	java -classpath target/classes -Djava.library.path=lib com.github.jfgiraud.jlinenoise.Example
 
 .PHONY: clean
 clean:
 	@echo "Clean files"
-	rm -f c/com_github_jfgiraud_jlinenoise_Library.h
+	rm -f c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h
 	rm -f lib/*.so yhirose-linenoise/{,encodings/}*.o c/*.o
 	rm -f lib/libjlinenoise.so lib/jlinenoise.jar
 	rm -rf target lib

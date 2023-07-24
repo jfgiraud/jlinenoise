@@ -1,6 +1,6 @@
 package com.github.jfgiraud.jlinenoise;
 
-public class Library {
+public class JLinenoiseLibrary {
 
     public native void print();
 
@@ -32,6 +32,7 @@ public class Library {
 ////    public native void linenoiseSetCompletionCallback(CompletionCallback fn);
 //
 //    public native void linenoiseSetMultiLine(int ml);
+
     static {
         System.loadLibrary("jlinenoise");
     }

@@ -2,7 +2,7 @@ package com.github.jfgiraud.jlinenoise;
 
 public class Example {
 
-    private static Library lib = new Library();
+    private static JLinenoiseLibrary lib = new JLinenoiseLibrary();
 
     public static void main(String[] args) {
         lib.init();
