@@ -4,6 +4,7 @@ JAVAC = javac
 CFLAGS = -Wall -W -Os -g
 LIB = lib
 INCLUDES = -I/java/include -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux -Iyhirose-linenoise
+REPOSITORY_NAME ?= jlinenoise
 
 VERSION ?= $(shell cat doc/VERSION)
 FILE_VERSION ?= $(shell cat doc/VERSION)
@@ -15,8 +16,12 @@ SHELL=bash
 usage:
 	@cat - <<EOF
 		Targets:
-		* c/com_jfgiraud_jlinenoise_Example.c
-		* lib/jlinenoise.so
+		* archive: create the jar (used in github pipeline for release)
+		* commit-release VERSION=X.Y.Z: commit files and create a release
+		* init: init yhirose-linenoise submodule
+		* update-doc: update man pages and usages
+		* update-version VERSION=X.Y.Z: update man pages and usages
+		* install-dependencies: install dependencies (you must call this target with sudo)
 	EOF
 
 install-dependencies:
@@ -25,7 +30,11 @@ install-dependencies:
 lib:
 	mkdir -p lib
 
+.PHONE: init
 init:
+	make yhirose-linenoise/.git
+
+yhirose-linenoise/.git:
 	git submodule update --init yhirose-linenoise
 
 .c.o:
@@ -35,7 +44,7 @@ c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h: src/main/java/com/github/j
 	$(JAVAC) -h c -d target/classes/ $<
 	make c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.o
 
-lib/libjlinenoise.so: yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h | lib
+lib/libjlinenoise.so: yhirose-linenoise/.git yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.h | lib init
 	$(CC) $(CFLAGS) -L $(LIB) -shared $(INCLUDES) c/com_github_jfgiraud_jlinenoise_JLinenoiseLibrary.c yhirose-linenoise/linenoise.o yhirose-linenoise/encodings/utf8.o -o $@
 
 target/classes/%.class: src/main/java/%.java | target/classes
@@ -86,4 +95,3 @@ clean:
 .PHONY: test
 test:
 	@echo "No test"
-	dpkg -l
