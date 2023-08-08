@@ -5,7 +5,7 @@
 #include "encodings/utf8.h"
 
 JNIEXPORT void JNICALL   Java_com_github_jfgiraud_jlinenoise_JLinenoiseLibrary_print(JNIEnv *env, jobject obj)  {
-     printf("salut jeff!\n");
+     printf("Hello!\n");
      return;
 }
 

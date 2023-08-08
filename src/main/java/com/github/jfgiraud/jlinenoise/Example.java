@@ -8,7 +8,7 @@ public class Example {
         lib.init();
         lib.print();
         String line;
-        while ((line = lib.linenoise("rpn> ")) != null) {
+        while ((line = lib.linenoise("$ ")) != null) {
             System.out.println("read: " + line);
         }
     }
