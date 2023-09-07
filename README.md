@@ -22,7 +22,8 @@ Follow the [link](src/main/java/com/github/jfgiraud/jlinenoise) to see the code 
 
 ## integration
 
-```xml, pom.xml
+### pom.xml
+```xml
 <repositories>
         <repository>
             <id>jitpack.io</id>
