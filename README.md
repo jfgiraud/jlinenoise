@@ -23,6 +23,9 @@ Follow the [link](src/main/java/com/github/jfgiraud/jlinenoise) to see the code 
 ## integration
 
 ### pom.xml
+
+Introduce the new repository and the dependency in your `pom.xml`
+
 ```xml
 <repositories>
         <repository>
