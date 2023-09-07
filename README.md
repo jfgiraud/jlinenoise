@@ -15,7 +15,7 @@ read: ls
 $ hello man
 ```
 
-The arrow keys (↑ ↓ → ←) are working...
+The arrow keys (↑ ↓ → ←) are working... See the cursor below.
 
 ![jlinenoise](https://github.com/jfgiraud/jlinenoise/assets/505040/42c6b923-50a9-4591-9145-7cb9bfa3317b)
 
