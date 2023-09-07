@@ -19,9 +19,6 @@ The arrow keys (↑ ↓ → ←) are working... See the cursor below.
 
 ![jlinenoise](https://github.com/jfgiraud/jlinenoise/assets/505040/42c6b923-50a9-4591-9145-7cb9bfa3317b)
 
-## code
-Follow the [link](src/main/java/com/github/jfgiraud/jlinenoise) to see the code of this example.
-
 ## integration
 
 ### pom.xml
@@ -44,3 +41,8 @@ Introduce the new repository and the dependency in your `pom.xml`
         </dependency>
     </dependencies>
 ```
+
+### code
+
+Follow the [link](src/main/java/com/github/jfgiraud/jlinenoise) to see the code of this example and use jlinenoise in your project.
+
