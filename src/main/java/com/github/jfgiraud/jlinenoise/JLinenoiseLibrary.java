@@ -8,6 +8,12 @@ public class JLinenoiseLibrary {
 
     public native String linenoise(String prompt);
 
+    public native void loadHistory(String filepath);
+
+    public native void addToHistory(String line);
+
+    public native void saveHistory(String filepath);
+
 //    public native void linenoiseAddCompletion(Completions lc, String str);
 
     /**

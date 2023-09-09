@@ -15,9 +15,22 @@ read: ls
 $ hello man
 ```
 
-The arrow keys (↑ ↓ → ←) are working... See the cursor below.
+Follow the [link](src/main/java/com/github/jfgiraud/jlinenoise) to see the code of this example and use jlinenoise in your project.
+
+## The arrow keys (↑ ↓ → ←) are working... See the cursor below.
 
 ![jlinenoise](https://github.com/jfgiraud/jlinenoise/assets/505040/42c6b923-50a9-4591-9145-7cb9bfa3317b)
+
+Methods :
+* `init()`
+* `linenoise(prompt)`
+
+## An history file can be set.
+
+Methods :
+* `loadHistory(filepath)`
+* `addToHistory(line)`
+* `saveHistory(filepath)`
 
 ## integration
 
@@ -42,7 +55,7 @@ Introduce the new repository and the dependency in your `pom.xml`
     </dependencies>
 ```
 
-### code
+### code example
 
 Follow the [link](src/main/java/com/github/jfgiraud/jlinenoise) to see the code of this example and use jlinenoise in your project.
 
