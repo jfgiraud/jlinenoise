@@ -65,6 +65,7 @@ update-version:
 	! grep -Eq "^## ${VERSION}\b" CHANGELOG.md && echo "No information about this version in CHANGELOG.md. Add an entry in CHANGELOG.md!" && exit 1
 	@echo "Modify version in doc/VERSION"
 	@echo "$(VERSION)" > doc/VERSION
+	mvn -B -DnewVersion=v$(cat doc/VERSION) -DgenerateBackupPoms=false versions:set
 
 .PHONY: archive
 archive: lib/$(REPOSITORY_NAME).jar

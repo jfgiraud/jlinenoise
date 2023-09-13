@@ -6,7 +6,7 @@
 
     <groupId>com.github.jfgiraud</groupId>
     <artifactId>jlinenoise</artifactId>
-    <version>v0.0.16</version>
+    <version>v0.0.22</version>
     <packaging>jar</packaging>
 
     <distributionManagement>

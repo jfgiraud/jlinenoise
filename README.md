@@ -34,25 +34,29 @@ Methods :
 
 ## integration
 
+of the version `v0.0.22`
+### Download the jar
+
+```bash
+mvn install:install-file -Dfile=jlinenoise.jar -DgroupId=com.github.jfgiraud -DartifactId=jlinenoise -Dversion=v0.0.22 -Dpackaging=jar -DgeneratePom=true
+```
+
+### Install the jar in your .m2 repository
+
+```bash
+mvn install:install-file -Dfile=jlinenoise.jar -DgroupId=com.github.jfgiraud -DartifactId=jlinenoise -Dversion=v0.0.22 -Dpackaging=jar -DgeneratePom=true
+```
+
 ### pom.xml
 
-Introduce the new repository and the dependency in your `pom.xml`
+Introduce the dependency in your `pom.xml`
 
 ```xml
-<repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.github.jfgiraud</groupId>
-            <artifactId>jlinenoise</artifactId>
-            <version>v0.0.13</version>
-        </dependency>
-    </dependencies>
+    <dependency>
+        <groupId>com.github.jfgiraud</groupId>
+        <artifactId>jlinenoise</artifactId>
+        <version>v0.0.22</version>
+    </dependency> 
 ```
 
 ### code example
