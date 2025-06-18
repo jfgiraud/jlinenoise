@@ -3,7 +3,7 @@ CC = gcc
 JAVAC = javac
 CFLAGS = -Wall -W -Os -g
 LIB = lib
-INCLUDES = -I/java/include -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux -Iyhirose-linenoise
+INCLUDES = -I/java/include -I/usr/lib/jvm/java-17-openjdk-amd64/include/ -I/usr/lib/jvm/java-17-openjdk-amd64/include/linux -Iyhirose-linenoise
 REPOSITORY_NAME ?= jlinenoise
 
 VERSION ?= $(shell cat doc/VERSION)
@@ -25,7 +25,7 @@ usage:
 	EOF
 
 install-dependencies:
-	apt install openjdk-11-jdk-headless
+	apt install openjdk-17-jdk-headless
 
 lib:
 	mkdir -p lib
